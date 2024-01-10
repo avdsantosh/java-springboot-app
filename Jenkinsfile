@@ -15,7 +15,7 @@ pipeline {
                 echo "build complted"
             }
         }
-        
+
     stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'sonar-portal-scanner'
