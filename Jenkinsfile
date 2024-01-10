@@ -15,8 +15,6 @@ pipeline {
                 echo "build complted"
             }
         }
-    }
-}
     stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'sonar-scanner-portal'
@@ -27,4 +25,7 @@ pipeline {
                 }
             }
         }
+    }
+}
+    
     
