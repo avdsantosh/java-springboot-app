@@ -1,30 +1,32 @@
 pipeline {
-       agent {
+    agent {
         node {
             label 'jenkins-slave-node'
         }
     }
- 
     
     environment {
         PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
     }
+
     stages {
-        stage("build stage"){
+        stage("Build Stage") {
             steps {
-                echo "----------- build started ----------"
+                echo "----------- Build Started ----------"
                 sh 'mvn clean package -Dmaven.test.skip=true'
-                echo "----------- build completed ----------"
+                echo "----------- Build Completed ----------"
             }
         }
-    stage('SonarQube analysis') {
+
+        stage('SonarQube Analysis') {
             environment {
                 scannerHome = tool 'sonar-scanner-portal'
             }
-            steps{
+            steps {
                 withSonarQubeEnv('sonar-server-portal') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
+    }
 }
