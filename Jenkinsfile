@@ -19,7 +19,7 @@ pipeline {
 }
     stage('SonarQube analysis') {
             environment {
-                scannerHome = tool 'sonar-scaner-portal'
+                scannerHome = tool 'sonar-scanner-portal'
             }
             steps{
                 withSonarQubeEnv('sonar-server-portal') {
@@ -27,3 +27,4 @@ pipeline {
                 }
             }
         }
+    
