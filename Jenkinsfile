@@ -4,45 +4,47 @@ pipeline {
             label 'jenkins-slave-node'
         }
     }
-    
     environment {
         PATH = "/opt/apache-maven-3.9.6/bin:$PATH"
     }
-
     stages {
-        stage("Build Stage") {
+        stage("build"){
             steps {
-                echo "----------- Build Started ----------"
+                echo "----------- build started ----------"
                 sh 'mvn clean package -Dmaven.test.skip=true'
-                echo "----------- Build Completed ----------"
+                echo "----------- build complted ----------"
             }
         }
-
-        stage('SonarQube Analysis') {
+        stage("test stage"){
+            steps{
+                echo "---------- unit test started ---------"
+                sh 'mvn surefire-report:report'
+                echo "---------- unit test Completed ---------"
+            }
+        }
+        stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'sonar-scanner-portal'
             }
-            steps {
+            steps{
                 withSonarQubeEnv('sonar-server-portal') {
                     sh "${scannerHome}/bin/sonar-scanner"
                 }
             }
         }
-    }
-}
-        stage("Quality Gate") {
-        steps {
-            script {
-                try {
+
+       stage("Quality Gate"){
+            steps {
+                script {
                     timeout(time: 1, unit: 'HOURS') { 
                         def qg = waitForQualityGate() 
                         if (qg.status != 'OK') {
                             error "Pipeline aborted due to quality gate failure: ${qg.status}"
                         }
                     }
-                } catch (Exception e) {
-                    error "Error during Quality Gate check: ${e.message}"
                 }
             }
         }
+
     }
+}
