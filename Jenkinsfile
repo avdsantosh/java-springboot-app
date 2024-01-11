@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage("build"){
             steps {
-                echo "----------- build started ----------"
+                echo "----------- build started -----------"
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "----------- build complted ----------"
             }
@@ -47,7 +47,7 @@ pipeline {
                 }
             }
         }
-        */
+        
         stage("Artifact Publish") {
             steps {
                 script {
@@ -74,4 +74,4 @@ pipeline {
         }
 
     }
-}
+}*/
