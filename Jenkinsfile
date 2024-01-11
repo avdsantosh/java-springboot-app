@@ -15,8 +15,6 @@ pipeline {
                 echo "----------- build complted -----------"
             }
         }
-    }
-}
         
         stage("test stage"){
             steps{
@@ -49,6 +47,7 @@ pipeline {
                 }
             }
         }
+        */
        
         stage("Artifact Publish") {
             steps {
@@ -74,4 +73,6 @@ pipeline {
                 }
             }   
         }
-        */
+    }
+}
+        
