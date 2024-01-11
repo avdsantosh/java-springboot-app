@@ -10,14 +10,14 @@ pipeline {
     stages {
         stage("build"){
             steps {
-                echo "----------- build started -----------"
-                sh 'mvn clean package -Dmaven.test.skip=true'
+                echo "----------- build started ------------"
+                sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "----------- build complted -----------"
             }
         }
     }
 }
-        /*
+        
         stage("test stage"){
             steps{
                 echo "---------- unit test started ---------"
@@ -25,7 +25,7 @@ pipeline {
                 echo "---------- unit test Completed ---------"
             }
         }
-        
+     /*   
         stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'sonar-scanner-portal'
@@ -49,7 +49,7 @@ pipeline {
                 }
             }
         }
-        
+       */ 
         stage("Artifact Publish") {
             steps {
                 script {
@@ -74,6 +74,3 @@ pipeline {
                 }
             }   
         }
-
-    }
-    */
