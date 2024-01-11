@@ -15,6 +15,7 @@ pipeline {
                 echo "----------- build complted ----------"
             }
         }
+        /*
         stage("test stage"){
             steps{
                 echo "---------- unit test started ---------"
@@ -22,7 +23,7 @@ pipeline {
                 echo "---------- unit test Completed ---------"
             }
         }
-        /*
+        
         stage('SonarQube analysis') {
             environment {
                 scannerHome = tool 'sonar-scanner-portal'
@@ -57,7 +58,7 @@ pipeline {
                         "files": [
                             {
                                 "pattern": "staging/(*)",
-                                "target": "release-local-artifacts/{1}",
+                                "target": "release-local-artifacts-key/{1}",
                                 "flat": "false",
                                 "props" : "${properties}",
                                 "exclusions": [ "*.sha1", "*.md5"]
