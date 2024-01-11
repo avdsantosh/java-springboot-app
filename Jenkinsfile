@@ -15,6 +15,8 @@ pipeline {
                 echo "----------- build complted ----------"
             }
         }
+    }
+}
         /*
         stage("test stage"){
             steps{
@@ -74,4 +76,4 @@ pipeline {
         }
 
     }
-*/
+    */
