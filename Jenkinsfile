@@ -14,7 +14,7 @@ pipeline {
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "----------- build complted -----------"
             }
-        }
+        }s
         
         stage("test stage"){
             steps{
@@ -73,6 +73,28 @@ pipeline {
                 }
             }   
         }
-    }
-}
         
+        stage(" Create Docker Image ") {
+            steps {
+                script {
+                    echo '-------------- Docker Build Started -------------'
+                    app = docker.build("portall.jfrog.io/portal-docker-local/myimg:1.0")
+                    echo '-------------- Docker Build Ended -------------'
+                }
+            }
+        }
+
+        stage (" Docker Publish "){
+            steps {
+                script {
+                        echo '---------- Docker Publish Started --------'  
+                        docker.withRegistry("https://portall.jfrog.io", 'jfrog-cred'){
+                        app.push()
+                        echo '------------ Docker Publish Ended ---------'  
+                    }    
+                }
+            }
+        }
+
+    }
+}       
