@@ -14,7 +14,7 @@ pipeline {
                 sh 'mvn clean deploy -Dmaven.test.skip=true'
                 echo "----------- build complted -----------"
             }
-        }s
+        }
         
         stage("test stage"){
             steps{
@@ -73,7 +73,7 @@ pipeline {
                 }
             }   
         }
-        
+
         stage(" Create Docker Image ") {
             steps {
                 script {
