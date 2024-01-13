@@ -96,13 +96,13 @@ pipeline {
             }
         }
 
-        stages {
-        stage("Deploy Stage") {
+        stage ("Deploy Stage"){
             steps {
                 script {
-                    sh './deploy.sh'
+                        sh './deploy.sh'
+                    }    
                 }
             }
         }
+
     }
-}
