@@ -17,7 +17,7 @@ spec:
       - name: jfrogcred
       containers:
       - name:  meportal-deploy
-        image: portall.jfrog.io/portal-docker-local/myimg:1.0.1
+        image: portall.jfrog.io/portal-docker-local/myimg:1.0
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
