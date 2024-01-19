@@ -110,7 +110,7 @@ pipeline {
             steps {
                 script {
                     echo '<--------------- Helm Deploy Started --------------->'
-                    sh 'helm install meportal /home/ubuntu/meportal-1.tgz'
+                    sh 'helm install meportal  /home/ubuntu/meportal-1.tgz'
                     echo '<--------------- Helm deploy Ends --------------->'
                 }
             }
